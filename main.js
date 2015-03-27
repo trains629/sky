@@ -1,11 +1,10 @@
-/*
- main.js
-*/
+var http = require("http"), server;
+var post = process.argv[2] || 8090;
+var skypath = "./skylevel";
+var uc = require(skypath);
 
-var http = require('http');
-var sky  = require('./sky');
-var server = http.createServer(function (request, response) {
-  sky(request, response);
-});
+server = http.createServer(function (request, response) {
+    uc(request, response);
+}).listen(post);
 
-server.listen(8090,'127.0.0.1');
+console.log("run sky server on " + post);

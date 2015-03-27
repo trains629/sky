@@ -1,10 +1,16 @@
 /*
   web服务处理，负责读取用户id和用户添加内容
+  需要处理异步执行问题,先采用redis的数据库进行测试
 */
 
 
 var url  = require('url');
 var querystring = require('querystring');
+var client = require("redis").createClient(6379,'trains629.com');
+client.auth("abcd1234FFFf009E$+120BTAZ",function (argument) {
+  // body...
+});
+
 
 function UsrContext(request,response) { // 用户对象
   var Url = request.url;
@@ -18,6 +24,9 @@ function UsrContext(request,response) { // 用户对象
 
 UsrContext.prototype.getUsrID = function(argument) {
   // 在这里执行用户名入库出库的检查和设置
+  client.get(argument,function function_name() {
+    // body...
+  })
   return this.UsrID;
 }
 
